@@ -39,6 +39,7 @@ body::before {
   position: relative;
   z-index: 1;
   min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   place-items: center;
   padding: 28px 16px;
@@ -208,14 +209,18 @@ button:active { transform: translateY(1px); }
 
 @media (max-width: 860px) {
   body { background-attachment: scroll; }
-  .app { padding: 12px; place-items: start center; }
+  .app {
+    min-height: 100svh;
+    padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+    place-items: start center;
+  }
   .game-shell { padding: 12px; }
   .play-area {
     grid-template-columns: 1fr;
     gap: 12px;
   }
   .board-wrap {
-    width: min(360px, calc(100vw - 48px));
+    width: min(360px, calc(100vw - 48px), calc((100svh - 312px) / 2));
     margin: 0 auto;
   }
   .board {
@@ -228,15 +233,12 @@ button:active { transform: translateY(1px); }
   .next-box canvas { width: 76px; height: 76px; }
   .primary-btn { grid-column: span 1; align-self: stretch; }
   .touch-controls {
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 12px;
-    z-index: 2;
+    position: static;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
-    pointer-events: none;
+    margin-top: 10px;
+    pointer-events: auto;
   }
   .touch-controls button {
     min-height: 54px;
@@ -247,7 +249,6 @@ button:active { transform: translateY(1px); }
     font-size: 23px;
     line-height: 1;
     backdrop-filter: blur(10px);
-    pointer-events: auto;
   }
   .touch-controls .rotate-control {
     color: #111018;
@@ -265,14 +266,21 @@ button:active { transform: translateY(1px); }
 @media (max-width: 430px) {
   .topbar { margin-bottom: 10px; }
   .kicker { display: none; }
-  h1 { font-size: 42px; }
+  h1 { font-size: 38px; }
+  .game-shell { padding: 10px; }
+  .play-area { gap: 8px; }
+  .board-wrap {
+    width: min(calc(100vw - 44px), calc((100svh - 292px) / 2));
+  }
+  .panel { gap: 8px; }
+  .stat { padding: 8px; }
+  .stat span { font-size: 12px; }
+  .stat strong { font-size: 19px; }
   .next-box { display: none; }
   .primary-btn { grid-column: 1 / -1; }
   .touch-controls {
-    left: 8px;
-    right: 8px;
-    bottom: 10px;
     gap: 7px;
+    margin-top: 8px;
   }
   .touch-controls button {
     min-height: 50px;
