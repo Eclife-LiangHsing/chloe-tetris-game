@@ -85,8 +85,13 @@ h1 {
   align-items: start;
 }
 
-.board {
+.board-wrap {
+  position: relative;
   width: min(360px, 100%);
+}
+
+.board {
+  width: 100%;
   aspect-ratio: 1 / 2;
   height: auto;
   display: block;
@@ -142,6 +147,7 @@ button {
   font-weight: 900;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 button:active { transform: translateY(1px); }
@@ -161,10 +167,7 @@ button:active { transform: translateY(1px); }
 }
 
 .touch-controls {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-top: 14px;
+  display: none;
 }
 
 .touch-controls button {
@@ -209,9 +212,12 @@ button:active { transform: translateY(1px); }
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .board {
+  .board-wrap {
     width: min(360px, calc(100vw - 48px));
     margin: 0 auto;
+  }
+  .board {
+    width: 100%;
   }
   .panel { grid-template-columns: repeat(3, 1fr); }
   .stat, .next-box { padding: 10px; }
@@ -219,11 +225,59 @@ button:active { transform: translateY(1px); }
   .next-box { grid-column: span 2; }
   .next-box canvas { width: 76px; height: 76px; }
   .primary-btn { grid-column: span 1; align-self: stretch; }
-  .touch-controls { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .touch-controls button { min-height: 52px; font-size: 17px; }
+  .touch-controls {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 12px;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    pointer-events: none;
+  }
+  .touch-controls button {
+    min-height: 54px;
+    border-color: rgba(255, 255, 255, .46);
+    border-radius: 8px;
+    background: rgba(8, 8, 10, .74);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .36);
+    font-size: 23px;
+    line-height: 1;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+  }
+  .touch-controls .rotate-control {
+    color: #111018;
+    background: linear-gradient(135deg, #7dd3fc, #fef08a);
+  }
+  .touch-controls .drop-control {
+    grid-column: span 4;
+    min-height: 50px;
+    color: #111018;
+    background: linear-gradient(135deg, #fb7185, #fef08a);
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 430px) {
+  .topbar { margin-bottom: 10px; }
+  .kicker { display: none; }
+  h1 { font-size: 42px; }
   .next-box { display: none; }
   .primary-btn { grid-column: 1 / -1; }
+  .touch-controls {
+    left: 8px;
+    right: 8px;
+    bottom: 10px;
+    gap: 7px;
+  }
+  .touch-controls button {
+    min-height: 50px;
+    font-size: 21px;
+  }
+  .touch-controls .drop-control {
+    min-height: 48px;
+    font-size: 17px;
+  }
 }

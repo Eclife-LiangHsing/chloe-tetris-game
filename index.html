@@ -20,7 +20,16 @@
       </header>
 
       <div class="play-area">
-        <canvas id="board" class="board" width="300" height="600" aria-label="遊戲區"></canvas>
+        <div class="board-wrap">
+          <canvas id="board" class="board" width="300" height="600" aria-label="遊戲區"></canvas>
+          <nav class="touch-controls" aria-label="手機控制">
+            <button class="rotate-control" data-action="rotate" type="button" aria-label="旋轉">↺</button>
+            <button data-action="left" type="button" aria-label="向左">←</button>
+            <button data-action="down" type="button" aria-label="向下">↓</button>
+            <button data-action="right" type="button" aria-label="向右">→</button>
+            <button class="drop-control" data-action="drop" type="button" aria-label="直接下降">落下</button>
+          </nav>
+        </div>
         <aside class="panel" aria-label="遊戲資訊">
           <div class="stat">
             <span>分數</span>
@@ -41,14 +50,6 @@
           <button id="restartBtn" class="primary-btn" type="button">重新開始</button>
         </aside>
       </div>
-
-      <nav class="touch-controls" aria-label="手機控制">
-        <button data-action="left" type="button">←</button>
-        <button data-action="rotate" type="button">↻</button>
-        <button data-action="right" type="button">→</button>
-        <button data-action="down" type="button">↓</button>
-        <button data-action="drop" type="button">落下</button>
-      </nav>
     </section>
   </main>
 
