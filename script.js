@@ -198,7 +198,7 @@ function drawBlock(context, x, y, size, color) {
 
 function drawBoard() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(0, 0, 0, .34)";
+  ctx.fillStyle = "rgba(0, 0, 0, .18)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.strokeStyle = "rgba(255,255,255,.08)";
