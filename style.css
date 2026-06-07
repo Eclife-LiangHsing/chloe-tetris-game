@@ -1,0 +1,229 @@
+:root {
+  --ink: #fffaf5;
+  --muted: rgba(255, 250, 245, .72);
+  --line: rgba(255, 255, 255, .28);
+  --panel: rgba(18, 15, 18, .58);
+  --panel-strong: rgba(18, 15, 18, .78);
+  --accent: #f9738a;
+  --accent-2: #7dd3fc;
+  --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 8, .68), rgba(5, 5, 8, .22) 42%, rgba(5, 5, 8, .72)),
+    url("./assets/background.jpg") center 18% / cover fixed no-repeat;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(249, 115, 138, .22), transparent 28rem),
+    radial-gradient(circle at 80% 22%, rgba(125, 211, 252, .18), transparent 26rem),
+    linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .46));
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px 16px;
+}
+
+.game-shell {
+  width: min(980px, 100%);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.kicker {
+  margin: 0 0 4px;
+  color: var(--accent-2);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(30px, 6vw, 58px);
+  line-height: 1;
+  letter-spacing: 0;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, .36);
+}
+
+.play-area {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(176px, 230px);
+  justify-content: center;
+  gap: 16px;
+  align-items: start;
+}
+
+.board {
+  width: min(360px, 100%);
+  aspect-ratio: 1 / 2;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, .32);
+  background:
+    linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .54)),
+    url("./assets/background.jpg") center 16% / cover no-repeat;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .42), inset 0 0 0 1px rgba(255, 255, 255, .08);
+  touch-action: none;
+}
+
+.panel {
+  display: grid;
+  gap: 12px;
+}
+
+.stat, .next-box {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.stat span, .next-box span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.next-box canvas {
+  width: 96px;
+  height: 96px;
+  display: block;
+  margin: 10px auto 0;
+}
+
+button {
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .12);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active { transform: translateY(1px); }
+
+.primary-btn {
+  width: 100%;
+  padding: 0 18px;
+  color: #14080b;
+  background: linear-gradient(135deg, #fb7185, #fef08a);
+  border-color: rgba(255, 255, 255, .38);
+}
+
+.icon-btn {
+  width: 48px;
+  flex: 0 0 48px;
+  background: var(--panel-strong);
+}
+
+.touch-controls {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.touch-controls button {
+  background: rgba(12, 10, 13, .62);
+  backdrop-filter: blur(8px);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .48);
+}
+
+.overlay.hidden { display: none; }
+
+.dialog {
+  width: min(300px, 100%);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  box-shadow: var(--shadow);
+  text-align: center;
+  backdrop-filter: blur(16px);
+}
+
+.dialog p {
+  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 950;
+}
+
+@media (max-width: 860px) {
+  body { background-attachment: scroll; }
+  .app { padding: 12px; place-items: start center; }
+  .game-shell { padding: 12px; }
+  .play-area {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .board {
+    width: min(360px, calc(100vw - 48px));
+    margin: 0 auto;
+  }
+  .panel { grid-template-columns: repeat(3, 1fr); }
+  .stat, .next-box { padding: 10px; }
+  .stat strong { font-size: 22px; }
+  .next-box { grid-column: span 2; }
+  .next-box canvas { width: 76px; height: 76px; }
+  .primary-btn { grid-column: span 1; align-self: stretch; }
+  .touch-controls { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .touch-controls button { min-height: 52px; font-size: 17px; }
+}
+
+@media (max-width: 430px) {
+  .next-box { display: none; }
+  .primary-btn { grid-column: 1 / -1; }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Chloe Tetris</title>
+  <meta name="description" content="以 Chloe 照片為背景的可玩俄羅斯方塊網頁遊戲。">
+  <link rel="preload" href="./assets/background.jpg" as="image">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="game-shell" aria-label="Chloe Tetris">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Chloe Edition</p>
+          <h1>俄羅斯方塊</h1>
+        </div>
+        <button id="pauseBtn" class="icon-btn" type="button" aria-label="暫停">II</button>
+      </header>
+
+      <div class="play-area">
+        <canvas id="board" class="board" width="300" height="600" aria-label="遊戲區"></canvas>
+        <aside class="panel" aria-label="遊戲資訊">
+          <div class="stat">
+            <span>分數</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="stat">
+            <span>消除</span>
+            <strong id="lines">0</strong>
+          </div>
+          <div class="stat">
+            <span>等級</span>
+            <strong id="level">1</strong>
+          </div>
+          <div class="next-box">
+            <span>下一塊</span>
+            <canvas id="next" width="96" height="96" aria-label="下一個方塊"></canvas>
+          </div>
+          <button id="restartBtn" class="primary-btn" type="button">重新開始</button>
+        </aside>
+      </div>
+
+      <nav class="touch-controls" aria-label="手機控制">
+        <button data-action="left" type="button">←</button>
+        <button data-action="rotate" type="button">↻</button>
+        <button data-action="right" type="button">→</button>
+        <button data-action="down" type="button">↓</button>
+        <button data-action="drop" type="button">落下</button>
+      </nav>
+    </section>
+  </main>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="dialog">
+      <p id="overlayTitle">暫停中</p>
+      <button id="overlayBtn" class="primary-btn" type="button">繼續</button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
